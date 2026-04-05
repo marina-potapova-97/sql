@@ -47,7 +47,7 @@ public class LoginTest {
     }
     @Test
     void shouldBlockAfterThreeInvalidAttemps(){
-        var authInfo = DataHelper.generateRandomUsers();
+        var authInfo = DataHelper.getAuthInfoWithTestData();
         for (int i = 0; i <3; i++){
             loginPage.login(new DataHelper.AuthInfo(authInfo.getLogin(), "123"));
             loginPage.verifyErrorNotification("Ошибка! Неверно указан логин или пароль");
