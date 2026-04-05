@@ -6,6 +6,7 @@ import ru.netology.data.DataHelper;
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
+import static org.openqa.selenium.Keys.BACK_SPACE;
 
 public class LoginPage {
     private final SelenideElement loginField = $("[data-test-id='login'] input");
@@ -23,9 +24,13 @@ public class LoginPage {
     }
 
     public void login(DataHelper.AuthInfo info) {
+        loginField.doubleClick().sendKeys(BACK_SPACE);
+        passwordField.doubleClick().sendKeys(BACK_SPACE);
+
         loginField.setValue(info.getLogin());
         passwordField.setValue(info.getPassword());
         loginButton.click();
+
     }
 
 }
