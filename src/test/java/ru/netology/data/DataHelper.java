@@ -1,6 +1,9 @@
 package ru.netology.data;
 
 import com.github.javafaker.Faker;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.Value;
 
 import java.util.Locale;
@@ -36,7 +39,9 @@ public class DataHelper {
         String login;
         String password;
     }
-    @Value
+    @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class VerificationCode{
         String code;
     }

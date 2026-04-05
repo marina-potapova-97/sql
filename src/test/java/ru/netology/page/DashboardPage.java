@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selenide.$;
 
 
 public class DashboardPage {
-    private final SelenideElement heading = $("[data-test-id=dashboad]");
+    private final SelenideElement heading = $("[data-test-id='dashboard']");
 
     public DashboardPage(String text) {
         heading.shouldHave(text(text)).shouldBe(visible);

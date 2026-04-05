@@ -39,11 +39,21 @@ public class LoginTest {
         loginPage.verifyErrorNotification("Ошибка!\nНеверно указан логин или пароль");
     }
     @Test
-    void shouldGetErrorNotificationIfGenerateRandomUsersAndRandomVerificationCode(){
+    void shouldGetErrorNotificationIfRandomVerificationCode(){
         var verificationPage = loginPage.validLogin(authInfo);
         var verificationCode = DataHelper.generateRandomVerificationCode();
         verificationPage.verify(verificationCode.getCode());
         verificationPage.verifyErrorNotification("Ошибка! Неверно указан код! Попробуйте ещё раз.");
+    }
+    @Test
+    void shouldBlockAfterThreeInvalidAttemps(){
+        var authInfo = DataHelper.generateRandomUsers();
+        for (int i = 0; i <3; i++){
+            loginPage.login(new DataHelper.AuthInfo(authInfo.getLogin(), "123"));
+            loginPage.verifyErrorNotification("Ошибка! Неверно указан логин или пароль");
+        }
+        loginPage.login(authInfo);
+        loginPage.verifyErrorNotification("Ошибка! Пользователь заблокирован.");
     }
 
 }
